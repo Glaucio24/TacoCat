@@ -60,78 +60,68 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers">
-                        <code class="language-javascript">   
-    //Get the string 
-//controller function
-function getSstring() {
-
-    // document.getElementById("alert").classList.add("invisible");
- 
-    let userString = document.getElementById("userInput").value;
-
-    let inputTag=document.getElementById("userInput");
-
-    let reverse = reverseString(userString);//declared a function into a variable 
-
-    
-
-    displayString(reverse);
-    submit(inputTag);
+                        <code class="language-javascript"> 
+function getValue(){
+    //make  sure alert is invisible
+    document.getElementById("alert").classList.add("invisible");
+    //get user string for the page 
+    let userString=document.getElementById("userInput").value;    
+    //check for a palidrome 
+    let palindrome=checkForPalindrome(userString);
+    //display out message to the screen
+    displayMessage(palindrome);
 }
+//check for palindrome
+function checkForPalindrome(userString){
 
-//Reverse the string 
-//logic function
-function reverseString(userString) {
-    let reverse = ''; //string or array to store reversed string  
+    userString=userString.toLowerCase();
 
-    for (let index = userString.length - 1; index >= 0; index--) {
-        reverse += userString[index];
+    //remove spaces and special caracters
+    let regex= /[^a-z0-9]/gi;
+    userString=userString.replace(regex,"");
+
+    //reverse string 
+    let revString=[];
+    let returnObj={};
+
+    //decrementing for loop 
+    for(let index=userString.length-1; index>=0; index--){
+        revString+=userString[index];
     }
-    return reverse;
+    if(revString==userString){
+        returnObj.msg="Well done! You entered a palindrome!";
+    }
+    else{
+        returnObj.msg="Sorry! you did not enter a palindrome!";
+    } 
+    returnObj.reversed=revString;
+
+    return returnObj;
 
 }
-//Submittion button
-function submit(inputTag){
-    console.log(inputTag);
-
-    inputTag.addEventListener("keyup", function(event){
-        if(event.keyCode === 13){
-            event.preventDefault();
-            displayString(reverseString(inputTag.value));
-        }       
-    });
-        
-
-}
-
-//Display the reversed string to the user//view function
-function displayString(reverse) {
-    console.log(reverse);
-
-    document.getElementById("msg").innerHTML = `Your string reversed is: ${reverse}`; //Template literals 
+//display a message to the string.
+function displayMessage(palindrome){
+    document.getElementById("alertHeader").innerHTML=palindrome.msg;
+    document.getElementById("msg").innerHTML=`Your phrase reversed is: ${palindrome.reversed}`;
     document.getElementById("alert").classList.remove("invisible");
-
+    
 }
-
-
                     </code>
                 </pre>
                 </div>
                 <div class="col-lg-4">
                     <p>The code is instructed in four main functions:</p>
-                    <h5>getSstring()</h5>
+                    <h5>getValue()</h5>
                     <p></p>
-                    <h5>ReverseString()</h5>
+                    <h5>checkForPalindrome()</h5>
                     <p></p>
-                    <h5>submit()</h5>
-                    <p</p>
-                        <h5>displayString()</h5>
+                        <h5>displayMessage</h5>
                         <p></p>
                 </div>
-              
-            </div>
 
             </div>
+
+        </div>
 
         </div>
     </main>
@@ -147,13 +137,17 @@ function displayString(reverse) {
                 </div>
                 <div class="col d-flex alin-item-center justify-content-start justify-content-lg-end">
                     <row class="row">
-                        <div class="col social"><a href="https://www.linkedin.com/in/glaucio-alexandre-502992208/" target="_blank"><i class="fa fa-linkedin fa-2x licon" aria-hidden="true"></i></a>
+                        <div class="col social"><a href="https://www.linkedin.com/in/glaucio-alexandre-502992208/"
+                                target="_blank"><i class="fa fa-linkedin fa-2x licon" aria-hidden="true"></i></a>
                         </div>
-                        <div class="col social"><a href="https://github.com/Glaucio24 " target="_blank"><i class="fa fa-github fa-2x gicon" target="_blank" aria-hidden="true"></i></a>
+                        <div class="col social"><a href="https://github.com/Glaucio24 " target="_blank"><i
+                                    class="fa fa-github fa-2x gicon" target="_blank" aria-hidden="true"></i></a>
                         </div>
-                        <div class="col social"><a href="https://twitter.com/Glaucio_Alex/with_replies?lang=ca" target="_blank"><i class="fa fa-twitter fa-2x ticon" aria-hidden="true"></i></a>
+                        <div class="col social"><a href="https://twitter.com/Glaucio_Alex/with_replies?lang=ca"
+                                target="_blank"><i class="fa fa-twitter fa-2x ticon" aria-hidden="true"></i></a>
                         </div>
-                        <div class="col social"><a href="https://www.youtube.com/channel/UCSBjqjBYW4rtRk37UTgNzhA" target="_blank"><i class="fa fa-youtube fa-2x yicon" aria-hidden="true"></i></a>
+                        <div class="col social"><a href="https://www.youtube.com/channel/UCSBjqjBYW4rtRk37UTgNzhA"
+                                target="_blank"><i class="fa fa-youtube fa-2x yicon" aria-hidden="true"></i></a>
                         </div>
                     </row>
                 </div>
